@@ -1,41 +1,54 @@
- const passwordLength = () => {
+export default class RandomGenerate {
+      constructor() {
+        
+}
+
+static randomGenerate(length) {
+   let result = [];
+   const vowels = "AEIOUYaeiouy";
+   const consonants = "BCDFGHJKLMNPQRSTVWXZbcdfghjklmnpqrstvwxz";
+   const vowelsLength = vowels.length;
+   const consonantsLength = consonants.length;
+   for (let i = 0; i < length; i++) {
+      result.push(vowels.charAt(Math.floor(Math.random() *
+         vowelsLength))) + result.push(consonants.charAt(Math.floor(Math.random() *
+         consonantsLength)));
+   }
+   return result.join('').substr(0,RandomGenerate.passwordLength());
+ 
+ }
+
+static passwordLength() {
     let rangeInput = document.getElementById('customRange1');
     let screenRangeOut = document.getElementById('rangeOut');
-    let result = screenRangeOut.value = rangeInput.value;
+    let result = rangeInput.value =  screenRangeOut.value  ;
     return result;
  }
 
- const randomGenerate = length => {
-    let result = [];
-    const str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-    const strLength = str.length;
-    for (let i = 0; i < length; i++) {
-       result.push(str.charAt(Math.floor(Math.random() *
-          strLength)));
-    }
-    return result.join('');
- }
+ static lowUpperCase() {
+  let chUpper = document.getElementById('inlineCheckboxUppercase');
+  let chLower = document.getElementById('inlineCheckboxLowercase');
+  if (chUpper.checked && chLower.checked) {
+     document.getElementById("passwordForm").value = (RandomGenerate.randomGenerate(RandomGenerate.passwordLength()));
+  }
+  if (chUpper.checked && !chLower.checked) {
+     document.getElementById("passwordForm").value = (RandomGenerate.randomGenerate(RandomGenerate.passwordLength())).toUpperCase();
+  }
+  if (chLower.checked && !chUpper.checked) {
+     document.getElementById("passwordForm").value = (RandomGenerate.randomGenerate(RandomGenerate.passwordLength())).toLowerCase();
+  }
+  if (!chLower.checked && !chUpper.checked) {
+     document.getElementById("passwordForm").value = "Select case of letters";
+  }
+} 
 
- const lowUpperCase = () => {
-    let chUpper = document.getElementById('inlineCheckboxUppercase');
-    let chLower = document.getElementById('inlineCheckboxLowercase');
-    if (chUpper.checked && chLower.checked) {
-       document.getElementById("passwordForm").value = randomGenerate(passwordLength());
-    }
-    if (chUpper.checked && !chLower.checked) {
-       document.getElementById("passwordForm").value = randomGenerate(passwordLength()).toUpperCase();
-    }
-    if (chLower.checked && !chUpper.checked) {
-       document.getElementById("passwordForm").value = randomGenerate(passwordLength()).toLowerCase();
-    }
-    if (!chLower.checked && !chUpper.checked) {
-       document.getElementById("passwordForm").value = "Select case of letters";
-    }
- }
 
- const textCopy = () => {
-    const copyText = document.getElementById("passwordForm");
-    copyText.select();
-    document.execCommand("copy");
- }
+static textCopy() {
+  const copyText = document.getElementById("passwordForm");
+  copyText.select();
+  document.execCommand("copy");
+}
+
+
+}
 

@@ -1,4 +1,4 @@
-import RandomGenerate from "./RandomeGenerate.js";
+import RandomGenerate from "./RandomGenerate.js";
 
 
 document.querySelector('.checkboxes').addEventListener('click', function() {

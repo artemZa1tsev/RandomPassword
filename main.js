@@ -21,13 +21,6 @@ document.getElementById('customRange1').addEventListener('input', function() {
 
 }); 
 
-document.getElementById('rangeOut').addEventListener('input', function(e) {
-    
-    RandomGenerate.passwordLength();
-    RandomGenerate.lowUpperCase();
-    
-}); 
-
 
 
 

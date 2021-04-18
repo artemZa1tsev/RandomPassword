@@ -18,7 +18,7 @@
         <div class="mx-auto mt-5 shadow-lg p-3 mb-5 bg-body rounded" style="width: 85%;">
             <h3 class="text-center mt-2 mb-3 fw-light user-select-none">Random password generator</h3>
             <div class="d-flex bd-highlight">
-                <input class="form-control form-control-lg fw-light p-2 w-100 bd-highlight" type="text"
+                <input class="form-control form-control-lg fw-light p-2 w-100 bd-highlight"  type="text" readonly
                     placeholder="password" id="passwordForm" aria-label=".form-control-lg example">
                 <div class="p-2 flex-shrink-1 bd-highlight ">
                     <button type="button" id="btn-copy" class="btn btn-secondary btn-sm ">copy
@@ -34,11 +34,11 @@
             </div>
 
             <div class="form-check mt-4 shadow p-3 mb-5 bg-body rounded d-flex p-2 bd-highlight">
-                <div class="d-flex flex-column p-2 w-50 bd-highlight ">
+                <div class="d-flex flex-column p-2 w-50 bd-highlight">
                     <label for="customRange1" class="form-label text-center fw-light user-select-none">Password
                         Length</label>
-                    <input autofocus class="form-control form-control-sm fw-light mx-auto" style="width: 40px;"
-                        type="text " id="rangeOut" aria-label=".form-control-lg example" maxlength="50">
+                    <input class="form-control form-control-sm fw-light mx-auto" style="width: 60px;"
+                        type="text" onkeyup="this.value = this.value.replace(/[^\d]/g,'');"  maxlength="2" id="rangeOut" aria-label=".form-control-lg example" maxlength="50">
                     <input type="range" class="form-range mt-1" id="customRange1" min="1" max="50" step="1">
                 </div>
                 <div class="d-flex flex-column bd-highlight mb-3 ms-auto p-2 bd-highlight">
@@ -64,7 +64,7 @@
         </div>
     </div>
 
-
+    <div>
     <script type="module" src="main.js"></script>
 </body>
 

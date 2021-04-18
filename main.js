@@ -1,6 +1,6 @@
 import {
     PassGen
-} from "./RandomGenerate.js";
+} from "./passwordGenerator.js";
 
 
 

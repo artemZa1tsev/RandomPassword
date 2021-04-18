@@ -1,9 +1,7 @@
-export default class RandomGenerate {
-   constructor() {
 
-   }
+export class PassGen {
 
-   static randomGenerate(length) {
+   static getPassword(length, chUpper, chLower) {
       let result = [];
       const vowels = "AEIOUYaeiouy";
       const consonants = "BCDFGHJKLMNPQRSTVWXZbcdfghjklmnpqrstvwxz";
@@ -14,40 +12,18 @@ export default class RandomGenerate {
             vowelsLength))) + result.push(consonants.charAt(Math.floor(Math.random() *
             consonantsLength)));
       }
-      return result.join('').substr(0, RandomGenerate.passwordLength());
-
-   }
-
-   static passwordLength() {
-      let rangeInput = document.getElementById('customRange1');
-      let screenRangeOut = document.getElementById('rangeOut');
-      let result = screenRangeOut.value = rangeInput.value;
-      return result;
-   }
-
-   static lowUpperCase() {
-      let chUpper = document.getElementById('inlineCheckboxUppercase');
-      let chLower = document.getElementById('inlineCheckboxLowercase');
-      if (chUpper.checked && chLower.checked) {
-         document.getElementById("passwordForm").value = (RandomGenerate.randomGenerate(RandomGenerate.passwordLength()));
+      const randomLetters = result.join('').substr(0, length);
+      if (chUpper && chLower) {
+         return randomLetters;
       }
-      if (chUpper.checked && !chLower.checked) {
-         document.getElementById("passwordForm").value = (RandomGenerate.randomGenerate(RandomGenerate.passwordLength())).toUpperCase();
+      if (chUpper && !chLower) {
+         return randomLetters.toUpperCase();
       }
-      if (chLower.checked && !chUpper.checked) {
-         document.getElementById("passwordForm").value = (RandomGenerate.randomGenerate(RandomGenerate.passwordLength())).toLowerCase();
+      if (!chUpper && chLower) {
+         return randomLetters.toLowerCase();
       }
-      if (!chLower.checked && !chUpper.checked) {
-         document.getElementById("passwordForm").value = "Select case of letters";
+      if (!chUpper && !chLower) {
+         return "Select case of letters";
       }
    }
-
-
-   static textCopy() {
-      const copyText = document.getElementById("passwordForm");
-      copyText.select();
-      document.execCommand("copy");
-   }
-
-
 }

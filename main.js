@@ -1,26 +1,43 @@
-import RandomGenerate from "./RandomGenerate.js";
+import {
+    PassGen
+} from "./RandomGenerate.js";
 
 
-document.querySelector('.checkboxes').addEventListener('click', function() {
-    RandomGenerate.lowUpperCase();
+
+const characterAmountRange = document.getElementById('customRange1');
+const characterAmountNumber = document.getElementById('rangeOut');
+const generatedPassField = document.getElementById('passwordForm');
+const lowercaseField = document.getElementById('inlineCheckboxUppercase');
+const uppercaseField = document.getElementById('inlineCheckboxLowercase');
+const copyBtn = document.getElementById('btn-copy');
+
+characterAmountNumber.addEventListener('input', syncCharacterAmount)
+characterAmountRange.addEventListener('input', syncCharacterAmount)
+
+document.addEventListener('input', () => {
+    const newPass = PassGen.getPassword(
+        characterAmountRange.value,
+        lowercaseField.checked,
+        uppercaseField.checked,
+    );
+    generatedPassField.value = newPass;
 });
 
-
-document.querySelector('.checkboxes1').addEventListener('click', function() {
-    RandomGenerate.lowUpperCase();
+copyBtn.addEventListener('click', () => {
+    generatedPassField.select();
+    document.execCommand("copy");
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+    generatedPassField.value = PassGen.getPassword(25, true, true);
+    characterAmountNumber.value = 25;
+});
 
-document.getElementById('btn-copy').addEventListener('click', function() {
-     RandomGenerate.textCopy();
-}); 
-
-document.getElementById('customRange1').addEventListener('input', function() {
-    RandomGenerate.passwordLength();
-    RandomGenerate.lowUpperCase();
-
-}); 
-
+function syncCharacterAmount(e) {
+    const value = e.target.value
+    characterAmountNumber.value = value
+    characterAmountRange.value = value
+};
 
 
 
